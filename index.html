@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock-Paper-Scissors</title>
+    <link rel="icon" href="./assets/rock-paper-scissors.png" type="image/x-icon">   <!--favicon icon-->
+    <!-- Font link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+20&display=swap" rel="stylesheet">
+    <!-- Bootstrap link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css" integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- CSS link -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <!-- function let us reuse the code -->
+    <!-- header section -->
+    <section class="header-section">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-6 col-md-8 col-sm-6 col-6">
+                    <div>
+                        <h1 class="display-5 m-0">ROCK</h1>
+                        <h1 class="display-5 m-0">PAPER</h1>
+                        <h1 class="display-5 m-0">SCISSORS</h1>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-4 col-sm-6 col-6 text-center d-flex justify-content-end">
+                    <div class="scoreDisplay">
+                        <p id="computerScore" class="text-white rounded px-3 py-1">Computer : <span id="comScore">0</span></p>
+                        <p id="playerScore" class="text-white rounded px-3 py-1 mb-0">Player : <span id="plaScore">0</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- play section -->
+    <section class="play-section">
+        <div class="container">
+            <div class="row justify-content-center text-center align-items-center">
+                <div class="col-lg-3 col-md-4 col-sm-5 col-5">
+                    <div id="computer">
+                        <div class="d-flex justify-content-center mb-2">
+                            <h4 class="py-1 rounded-3">Computer</h4>
+                        </div>
+                        <div id="computer-move" class="rounded-3 d-flex align-items-center justify-content-center">
+                            <img src="./assets/fist.png" class="img-fluid" id="comImg" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-9 col-10">
+                    <div>
+                        <p id="statement" class="py-2 rounded-3">........</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-5 col-5">
+                    <div id="player">
+                        <div class="d-flex justify-content-center mb-2">
+                            <h4 class="py-1 rounded-3">Player</h4>
+                        </div>
+                        <div id="player-move" class="rounded-3 d-flex align-items-center justify-content-center">
+                            <img src="./assets/fist.png" class="img-fluid" id="playerImg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- player section -->
+    <section class="player-section">
+        <div class="container d-flex justify-content-center">
+            <div class="row text-center justify-content-evenly">
+                <div class="col-3">
+                    <div class="yourMove">
+                        <button class="btn" onclick=" 
+                            playGame('Rock');
+                        ">
+                            <img id="img" src=" " alt="rockImg" class="img-fluid" />
+                        </button>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="yourMove">
+                        <button class="btn" onclick="
+                            playGame('Paper');
+                        ">
+                            <img id="img" src=" " alt="paperImg" class="img-fluid" />
+                        </button>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="yourMove">
+                        <button class="btn" onclick="
+                            playGame('Scissors');       //giving parameter value
+                        ">
+                            <img id="img" src=" " alt="scissorsImg" class="img-fluid" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- reset section -->
+    <section class="reset-section">
+        <div class="container d-flex justify-content-center">
+            <div class="row">
+                <div class="col">
+                    <div>
+                        <button id="resetBtn" class="btn py-1 px-1" onclick=" 
+                            score.Wins = 0;
+                            score.Losses = 0;
+                            score.Ties = 0;
+                            localStorage.removeItem('score');
+                            getPlaScore.innerHTML = `${score.Wins}`;
+                            getComScore.innerHTML = `${score.Losses}`;
+                            getStatement.innerHTML = 'Reset the SCORES!';
+                            getComImg.src = './assets/fist.png';
+                            getPlayerImg.src = './assets/fist.png';
+                            ">
+                            RESET SCORES !
+                        </button> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <hr />
+                    <div class="footer">
+                        <div class="main-div">
+                            <p class="text-dark m-0 text-center">&copy;<span id="yearTxt"></span> All rights reserved</p>
+                            <div class="child-div text-center">
+                                <a href="javascript:void(0)" class="text-secondary text-decoration-none">
+                                    <small>Privacy Policy</small>
+                                </a>
+                                <span class="mx-1 text-secondary">|</span>
+                                <a href="javascript:void(0)" class="text-secondary text-decoration-none">
+                                    <small>Terms of Service</small>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+<!-- script js -->
+    <script src="./app.js"></script>
+</body>
+</html>
+
+<!-- 
+
+    New features to add
+
+    1 - Best‑of‑N rounds: Let players choose “Best of 3” or “Best of 5” instead of just single rounds.
+
+    2 - Difficulty levels: Add “Easy” (computer picks randomly), “Hard” (computer tries to counter player’s last move).
+
+    3 - Win streaks / achievements: Track consecutive wins and display badges.
+
+    4 - Animations: Animate the hand icons when chosen (shake before reveal).
+
+    5 - Sound effects: Play a click or victory sound when moves are made
+
+
+-->
