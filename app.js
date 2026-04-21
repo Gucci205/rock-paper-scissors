@@ -4,8 +4,8 @@ const imgs = [
             './assets/v (1).png'
         ];
 const getStatement = document.querySelector('#statement');
-const getComScore = document.getElementById('comScore');
-const getPlaScore = document.getElementById('plaScore');
+const getComScore = document.querySelector('.comScore');
+const getPlaScore = document.querySelector('.plaScore');
 const getYearTxt = document.getElementById('yearTxt');
 const getComImg = document.getElementById('comImg');
 const getPlayerImg = document.getElementById('playerImg');
@@ -20,7 +20,6 @@ function insertImg(){
         }
         getImgs[i].src = img;
     }
-    return img;
 }
 insertImg();
 
@@ -33,7 +32,8 @@ const score = JSON.parse(localStorage.getItem('score')) || {
 
 function playGame(playerMove){  //parameter function
 
-    pickComputerMove();     
+    pickComputerMove();   
+    // animateScores();  
 
     if(playerMove === 'Scissors'){
         if(computerMove === 'Rock'){
@@ -45,7 +45,7 @@ function playGame(playerMove){  //parameter function
         }
         getPlayerImg.src = './assets/v (1).png';
     }
-    else if(playerMove === 'Paper'){
+    else if(playerMove === 'Paper'){ 
         if(computerMove === 'Rock'){
             result = 'You Win !';
         }else if(computerMove === 'Paper'){
@@ -80,6 +80,20 @@ function playGame(playerMove){  //parameter function
     getPlaScore.innerHTML = `${score.Wins}`;
     getComScore.innerHTML = `${score.Losses}`;
 }
+
+// function animateScores(){
+//     if(score.Wins > 0){
+//         getPlaScore.classList.add("pop");
+//         setIimeout(function(){
+//             getPlaScore.classList.remove("pop");
+//         },2000);
+//     }else if(score.Losses > 0){
+//         getComScore.classList.add("pop");
+//         setIimeout(function(){
+//             getComScore.classList.remove("pop");
+//         },2000);
+//     }
+// }
 
 function pickComputerMove(){
     const randomNumber = Math.floor(Math.random()*3);
