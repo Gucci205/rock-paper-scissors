@@ -14,12 +14,19 @@ const getImgs = document.querySelectorAll('#img');
 //insert img to buttons
 function insertImg(){
     let img;
+    
+    //Cleaner way
     for(let i = 0; i < getImgs.length; i++){
-        for(let x = 0; x <= i; x++){
-            img = imgs[x];
-        }
-        getImgs[i].src = img;
+        getImgs[i].src = imgs[i];
     }
+
+    //Nested loop doesn't really necessary here
+        // for(let i = 0; i < getImgs.length; i++){
+        //     for(let x = 0; x <= i; x++){
+        //         img = imgs[x];
+        //     }
+        //     getImgs[i].src = img;
+        // }
 }
 insertImg();
 
