@@ -1,6 +1,6 @@
 body{
     margin:0;
-    background-color:#ffffff;
+    background:linear-gradient(135deg,#f3f0ff, #f8f7f4);
     height:100vh;
     font-family: "Jersey 20", sans-serif;
     letter-spacing:1px;
