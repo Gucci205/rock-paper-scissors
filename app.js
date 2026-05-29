@@ -9,7 +9,7 @@ const getPlaScore = document.querySelector('.plaScore');
 const getYearTxt = document.getElementById('yearTxt');
 const getComImg = document.getElementById('comImg');
 const getPlayerImg = document.getElementById('playerImg');
-const getImgs = document.querySelectorAll('#img');
+const getImgs = document.querySelectorAll('.img');
 
 //insert img to buttons
 function insertImg(){

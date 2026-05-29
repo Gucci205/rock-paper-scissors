@@ -15,150 +15,198 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <!-- function let us reuse the code -->
-    <!-- header section -->
-    <section class="header-section">
-        <div class="container">
-            <div class="row justify-content-center align-items-center">
-                <div class="col-lg-6 col-md-8 col-sm-6 col-6">
-                    <div>
-                        <h1 class="display-5 m-0">ROCK</h1>
-                        <h1 class="display-5 m-0">PAPER</h1>
-                        <h1 class="display-5 m-0">SCISSORS</h1>
+    <div id="introScreen">
+        <header class="mt-4 mb-5">
+            <div class="container">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-lg-2 text-center p-0">
+                        <h1 class="display-4 m-0 rock">ROCK</h1>
+                    </div>
+                    <div class="col-lg-2 text-center p-0">
+                        <h1 class="display-4 m-0 paper">PAPER</h1>
+                    </div>
+                    <div class="col-lg-2 text-center p-0">
+                        <h1 class="display-4 m-0 scissors">SCISSORS</h1>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-4 col-sm-6 col-6 text-center d-flex justify-content-end">
-                    <div class="scoreDisplay">
-                        <p id="computerScore" class="text-white rounded px-3 py-1">Computer : <span class="comScore">0</span></p>
-                        <p id="playerScore" class="text-white rounded px-3 py-1 mb-0">Player : <span class="plaScore">0</span></p>
-                    </div>
+                <div class="row text-center mt-3">
+                    <h4 class="text-secondary">-- FIRST TO 5 WINS --</h4>
                 </div>
             </div>
-        </div>
-    </section>
+        </header>
 
-    <!-- play section -->
-    <section class="play-section">
-        <div class="container">
-            <div class="row justify-content-center text-center align-items-center">
-                <div class="col-lg-3 col-md-4 col-sm-5 col-5">
-                    <div id="computer">
-                        <div class="d-flex justify-content-center mb-2">
-                            <h4 class="py-1 rounded-3">Computer</h4>
-                        </div>
-                        <div id="computer-move" class="rounded-3 d-flex align-items-center justify-content-center">
-                            <img src="./assets/fist.png" class="img-fluid" id="comImg" alt="">
-                        </div>
-                    </div>
+        <main class="my-5 d-flex justify-content-center align-items-center">
+            <div class="circle my-5">
+                <div class="rock-img">
+                    <img class="img img-fluid" src="" alt="rockImg">
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-9 col-10">
-                    <div>
-                        <p id="statement" class="py-2 rounded-3">READY ?</p>
-                    </div>
+                <div class="paper-img">
+                    <img class="img img-fluid" src="" alt="paperImg">
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-5 col-5">
-                    <div id="player">
-                        <div class="d-flex justify-content-center mb-2">
-                            <h4 class="py-1 rounded-3">Player</h4>
-                        </div>
-                        <div id="player-move" class="rounded-3 d-flex align-items-center justify-content-center">
-                            <img src="./assets/fist.png" class="img-fluid" id="playerImg" alt="">
+                <div class="scissors-img">
+                    <img class="img img-fluid" src="" alt="scissorsImg">
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="container d-flex justify-content-center align-items-center">
+                <div class="row justify-content-center">
+                    <div class="col">
+                        <div>
+                            <button id="startBtn" class="fs-4 px-4 py-1">START GAME</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </footer>
+    </div>
 
-    <!-- player section -->
-    <section class="player-section">
-        <div class="container d-flex justify-content-center">
-            <div class="row text-center justify-content-evenly">
-                <div class="col-3">
-                    <div class="yourMove">
-                        <button class="btn" onclick=" 
-                            playGame('Rock');
-                        ">
-                            <img id="img" src=" " alt="rockImg" class="img-fluid" />
-                        </button>
+    <div id="gameContainer">
+        <!-- header section -->
+        <header class="header-section">
+            <div class="container">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-lg-6 col-md-8 col-sm-6 col-6">
+                        <div>
+                            <h1 class="display-5 m-0 rock">ROCK</h1>
+                            <h1 class="display-5 m-0 paper">PAPER</h1>
+                            <h1 class="display-5 m-0 scissors">SCISSORS</h1>
+                        </div>
                     </div>
-                </div>
-                <div class="col-3">
-                    <div class="yourMove">
-                        <button class="btn" onclick="
-                            playGame('Paper');
-                        ">
-                            <img id="img" src=" " alt="paperImg" class="img-fluid" />
-                        </button>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="yourMove">
-                        <button class="btn" onclick="
-                            playGame('Scissors');       //giving parameter value
-                        ">
-                            <img id="img" src=" " alt="scissorsImg" class="img-fluid" />
-                        </button>
+                    <div class="col-lg-6 col-md-4 col-sm-6 col-6 text-center d-flex justify-content-end">
+                        <div class="scoreDisplay">
+                            <p id="computerScore" class="text-white rounded px-3 py-1">Computer : <span class="comScore">0</span></p>
+                            <p id="playerScore" class="text-white rounded px-3 py-1 mb-0">Player : <span class="plaScore">0</span></p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </header>
 
-    <!-- reset section -->
-    <section class="reset-section">
-        <div class="container d-flex justify-content-center">
-            <div class="row">
-                <div class="col">
-                    <div>
-                        <button id="resetBtn" class="btn py-1 px-1" onclick=" 
-                            score.Wins = 0;
-                            score.Losses = 0;
-                            score.Ties = 0;
-                            localStorage.removeItem('score');
-                            getPlaScore.innerHTML = `${score.Wins}`;
-                            getComScore.innerHTML = `${score.Losses}`;
-                            getStatement.innerHTML = 'Reset the SCORES!'
-                            setTimeout(function(){
-                                getStatement.innerHTML = `PLAY AGAIN ?`;
-                            },2000);
-                            getComImg.src = './assets/fist.png';
-                            getPlayerImg.src = './assets/fist.png';
-                            ">
-                            RESET SCORES !
-                        </button> 
+        <!-- play section -->
+        <main class="play-section">
+            <div class="container">
+                <div class="row justify-content-center text-center align-items-center">
+                    <div class="col-lg-3 col-md-4 col-sm-5 col-5">
+                        <div id="computer">
+                            <div class="d-flex justify-content-center mb-2">
+                                <h4 class="py-1 rounded-3">Computer</h4>
+                            </div>
+                            <div id="computer-move" class="rounded-3 d-flex align-items-center justify-content-center">
+                                <img src="./assets/fist.png" class="img-fluid" id="comImg" alt="">
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- footer -->
-    <section class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <hr />
-                    <div class="footer">
-                        <div class="main-div">
-                            <p class="text-dark m-0 text-center">&copy;<span id="yearTxt"></span> All rights reserved</p>
-                            <div class="child-div text-center">
-                                <a href="javascript:void(0)" class="text-secondary text-decoration-none">
-                                    <small>Privacy Policy</small>
-                                </a>
-                                <span class="mx-1 text-secondary">|</span>
-                                <a href="javascript:void(0)" class="text-secondary text-decoration-none">
-                                    <small>Terms of Service</small>
-                                </a>
+                    <div class="col-lg-3 col-md-3 col-sm-9 col-10">
+                        <div>
+                            <p id="statement" class="py-2 rounded-3">READY ?</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-5 col-5">
+                        <div id="player">
+                            <div class="d-flex justify-content-center mb-2">
+                                <h4 class="py-1 rounded-3">Player</h4>
+                            </div>
+                            <div id="player-move" class="rounded-3 d-flex align-items-center justify-content-center">
+                                <img src="./assets/fist.png" class="img-fluid" id="playerImg" alt="">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </main>
+
+        <!-- player section -->
+        <section class="player-section">
+            <div class="container d-flex justify-content-center">
+                <div class="row text-center justify-content-evenly">
+                    <div class="col-3">
+                        <div class="yourMove">
+                            <button class="btn" onclick=" 
+                                playGame('Rock');
+                            ">
+                                <img src="" alt="rockImg" class="img-fluid img" />
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="yourMove">
+                            <button class="btn" onclick="
+                                playGame('Paper');
+                            ">
+                                <img src="" alt="paperImg" class="img-fluid img" />
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="yourMove">
+                            <button class="btn" onclick="
+                                playGame('Scissors');       //giving parameter value
+                            ">
+                                <img src="" alt="scissorsImg" class="img-fluid img" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- reset section -->
+        <section class="reset-section">
+            <div class="container d-flex justify-content-center">
+                <div class="row">
+                    <div class="col">
+                        <div>
+                            <button id="resetBtn" class="btn py-1 px-1" onclick=" 
+                                score.Wins = 0;
+                                score.Losses = 0;
+                                score.Ties = 0;
+                                localStorage.removeItem('score');
+                                getPlaScore.innerHTML = `${score.Wins}`;
+                                getComScore.innerHTML = `${score.Losses}`;
+                                getStatement.innerHTML = 'Reset the SCORES!'
+                                setTimeout(function(){
+                                    getStatement.innerHTML = `PLAY AGAIN ?`;
+                                },2000);
+                                getComImg.src = './assets/fist.png';
+                                getPlayerImg.src = './assets/fist.png';
+                                ">
+                                RESET SCORES !
+                            </button> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <hr />
+                        <div class="footer">
+                            <div class="main-div">
+                                <p class="text-dark m-0 text-center">&copy;<span id="yearTxt"></span> All rights reserved</p>
+                                <div class="child-div text-center">
+                                    <a href="javascript:void(0)" class="text-secondary text-decoration-none">
+                                        <small>Privacy Policy</small>
+                                    </a>
+                                    <span class="mx-1 text-secondary">|</span>
+                                    <a href="javascript:void(0)" class="text-secondary text-decoration-none">
+                                        <small>Terms of Service</small>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
     
-<!-- script js -->
+    <!-- script js -->
     <script src="./app.js"></script>
 </body>
 </html>
