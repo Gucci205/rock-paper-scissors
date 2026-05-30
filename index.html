@@ -12,10 +12,32 @@
     <!-- Bootstrap link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css" integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- CSS link -->
+    <link rel="stylesheet" href="./style/loading-screen.css">
     <link rel="stylesheet" href="./style/game-inro.css">
     <link rel="stylesheet" href="./style/main.css">
 </head>
 <body>
+    <div id="loadingScreen">
+        <div class="first-container">
+            <div class="img-box">
+                <img class="img img-fluid loading-rock" src="" alt="" />
+                <img class="img img-fluid loading-paper" src="" alt="" />
+                <img class="img img-fluid loading-scissors" src="" alt="" />
+            </div>
+            <div class="txt-box">
+                <h1 class="display-4 m-0 rock">ROCK</h1>
+                <h1 class="display-4 m-0 paper">PAPER</h1>
+                <h1 class="display-4 m-0 scissors">SCISSORS</h1>
+            </div>
+        </div>
+        <div class="second-container">
+            <h4 class="text-white">Loading...</h4>
+            <div class="rock-circle"></div>
+            <div class="paper-circle"></div>
+            <div class="scissors-circle"></div>
+        </div>
+    </div>
+
     <div id="introScreen">
         <header class="mt-3">
             <div class="container">

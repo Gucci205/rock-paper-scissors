@@ -12,12 +12,19 @@ body{
     font-family: "Jersey 20", sans-serif;
     letter-spacing:1px;
     user-select:none;
-    overflow:hidden;
+    /* overflow:hidden; */
 }
-#introScreen{
+#loadingScreen{
     position:fixed;
     inset:0;
     z-index:999;
+    background-color:#221d3e;
+}
+#introScreen{
+    /* position:fixed;
+    inset:0;
+    z-index:999; */
+    opacity:0;
 }
 #gameContainer{
     opacity:0;
