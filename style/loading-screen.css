@@ -6,27 +6,28 @@
 }
 .img-box{
     position:relative;
+    width:350px;
     height:100px;
     margin-bottom:50px;
 }
 .img-box img{
     width:100px;
     position:absolute;
-    box-shadow:0 5px 7px #221d3e;
+    border-radius:50%;
+    box-shadow:0 7px 15px #161328;
 }
 .loading-paper{
     left:50%;
     transform:translate(-50%);
     border:3px solid var(--main);
-    border-radius:50%;
     z-index:1;
 }
 .loading-scissors{
-    right:35px;
+    right:39px;
     transform:rotate(30deg);
 }
 .loading-rock{
-    left:35px;
+    left:39px;
     transform:rotate(-30deg);
 }
 .txt-box{
