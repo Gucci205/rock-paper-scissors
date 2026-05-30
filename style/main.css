@@ -14,54 +14,13 @@ body{
     user-select:none;
 }
 #introScreen{
-    position:fixed;
+    /* position:fixed; */
     inset:0;
     z-index:999;
 }
 #gameContainer{
     opacity:0;
 }
-/* Intro Screen */
-    .circle{
-        border:1px solid var(--reset);
-        border-radius:50%;
-        position:relative;
-        height:300px;
-        width:300px;
-        /* transform:scale(); */
-    }
-    .rock-img img, .paper-img img, .scissors-img img{
-        width:100px;
-        height:auto;
-        position:absolute;
-        border-radius:50%;
-        box-shadow:0 4px 8px rgb(228, 221, 221);
-    }
-    .rock-img img{
-        bottom:40px;
-        left:-30px;
-        transform:rotate(50deg);
-    }
-    .paper-img img{
-        left:100px;
-        top:-40px;
-        transform:rotate(180deg);
-    }
-    .scissors-img img{
-        bottom:40px;
-        right:-30px;
-        transform:rotate(-50deg);
-    }
-    #startBtn{
-        color:var(--main);
-        background-color:var(--paper);
-        border-radius:10px;
-        box-shadow:0 4px 8px rgb(254, 124, 124);
-        border:1px solid #aa1f1f;
-        border-bottom:5px solid #ad1919;
-    }
-
-/* Game UI */
 .rock{
     color:var(--rock);
 }
