@@ -1,22 +1,29 @@
 .circle{
-    border:1px solid var(--reset);
+    border:1px dashed var(--reset);
     border-radius:50%;
     position:relative;
     height:300px;
     width:300px;
-    /* transform:scale(); */
+    animation:ani 10s linear infinite;
+    /* transform:scale(0); */
+}
+@keyframes ani{
+    from{
+        transform:rotate(0deg);
+    }to{
+        transform:rotate(360deg);
+    }
 }
 .rock-img img, .paper-img img, .scissors-img img{
     width:100px;
     height:auto;
     position:absolute;
     border-radius:50%;
-    box-shadow:0 4px 8px rgb(228, 221, 221);
 }
 .rock-img img{
     bottom:40px;
     left:-30px;
-    transform:rotate(50deg);
+    transform:rotate(70deg);
 }
 .paper-img img{
     left:100px;
@@ -26,13 +33,37 @@
 .scissors-img img{
     bottom:40px;
     right:-30px;
-    transform:rotate(-50deg);
+    transform:rotate(-70deg);
+}
+.rock-circle, .paper-circle, .scissors-circle{
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    position:absolute;
+}
+.rock-circle{
+    background-color:var(--rock);
+    top:60px;
+    left:13px;
+}
+.paper-circle{
+    background-color:var(--paper);
+    top:60px;
+    right:13px;
+}
+.scissors-circle{
+    background-color:var(--scissors);
+    bottom:-10px;
+    left:50%;
+    transform:translate(-50%);
 }
 #startBtn{
     color:var(--main);
     background-color:var(--paper);
-    border-radius:10px;
     box-shadow:0 4px 8px rgb(254, 124, 124);
     border:1px solid #aa1f1f;
     border-bottom:5px solid #ad1919;
+}
+#introScreen > header, #introScreen > footer{
+    transform:scale(0);
 }

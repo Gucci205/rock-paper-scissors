@@ -12,9 +12,10 @@ body{
     font-family: "Jersey 20", sans-serif;
     letter-spacing:1px;
     user-select:none;
+    overflow:hidden;
 }
 #introScreen{
-    /* position:fixed; */
+    position:fixed;
     inset:0;
     z-index:999;
 }
@@ -102,7 +103,6 @@ body{
     width:140px;
 }
 #resetBtn{
-    cursor:pointer;
     font-family: "Jersey 20", sans-serif;
     font-weight: 400;
     font-size:20px;
