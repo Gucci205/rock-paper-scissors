@@ -33,4 +33,38 @@
 .txt-box{
     display:flex;
     gap:5px;
+} 
+.second-container{
+    position:fixed;
+    bottom:15px;
+}
+.dots{
+    display:flex;
+    justify-content:space-between;
+    animation: wave 1s infinite;
+}
+.loadingScreen-rock-circle, .loadingScreen-paper-circle, .loadingScreen-scissors-circle{
+    width:17px;
+    height:17px;
+    border-radius:50%;
+}
+.loadingScreen-rock-circle{
+    background-color:var(--rock);
+    animation-delay:0s;
+}
+.loadingScreen-paper-circle{
+    background-color:var(--paper);
+    animation-delay:15s;
+}
+.loadingScreen-scissors-circle{
+    background-color:var(--scissors);
+    animation-delay:0.3s;
+}
+@keyframes wave{
+    0%,60%,100%{
+        transform:translateY(0);
+    }
+    30%{
+        transform:translateY(-15px);
+    }
 }
