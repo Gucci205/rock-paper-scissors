@@ -17,14 +17,15 @@ body{
 #loadingScreen{
     position:fixed;
     inset:0;
-    z-index:999;
+    z-index:3;
     background-color:#221d3e;
 }
 #introScreen{
-    /* position:fixed;
+    position:fixed;
     inset:0;
-    z-index:999; */
+    z-index:2;
     opacity:0;
+    pointer-events:none;
 }
 #gameContainer{
     opacity:0;
