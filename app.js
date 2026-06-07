@@ -110,7 +110,7 @@ setTimeout(() => {
 
     }, 500);
 
-}, 3000);
+}, 2000);
 
 startBtn.addEventListener('click', () => {
     introScreen.style.opacity = '0';
