@@ -15,33 +15,21 @@
     position:absolute;
     border-radius:50%;
     box-shadow:0 7px 15px #161328;
-        animation:float 3s ease-in-out infinite;
 }
 .loading-paper{
     left:50%;
     transform:translateX(-50%);
     border:3px solid var(--main);
     z-index:1;
-    /* animation-delay:0s; */
 }
 .loading-scissors{
     right:39px;
     transform:rotate(30deg);
-    /* animation-delay:0.3s; */
 }
 .loading-rock{
     left:39px;
     transform:rotate(-30deg);
-    /* animation-delay:0.6s; */
 }
-/* @keyframes float{
-    0%,100%{
-        transform:translateY(0);
-    }
-    50%{
-        transform:translateY(-8px);
-    }
-} */
 .txt-box{
     display:flex;
     gap:5px;

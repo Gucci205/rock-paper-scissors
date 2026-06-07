@@ -20,9 +20,9 @@
     <div id="loadingScreen">
         <div class="first-container d-flex flex-column align-items-center">
             <div class="img-box">
-                <img class="img img-fluid loading-rock" src="" alt="" />
-                <img class="img img-fluid loading-paper" src="" alt="" />
-                <img class="img img-fluid loading-scissors" src="" alt="" />
+                <img class="img img-fluid loading-rock" src="" alt="rockImg" />
+                <img class="img img-fluid loading-paper" src="" alt="paperImg" />
+                <img class="img img-fluid loading-scissors" src="" alt="scissorsImg" />
             </div>
             <div class="txt-box">
                 <h1 class="display-4 m-0 rock">ROCK</h1>
@@ -30,6 +30,7 @@
                 <h1 class="display-4 m-0 scissors">SCISSORS</h1>
             </div>
         </div>
+        
         <div class="second-container">
             <h4 class="text-white text-center mb-3">Loading...</h4>
             <div class="dots">
@@ -191,14 +192,14 @@
                                 score.Losses = 0;
                                 score.Ties = 0;
                                 localStorage.removeItem('score');
-                                getPlaScore.innerHTML = `${score.Wins}`;
-                                getComScore.innerHTML = `${score.Losses}`;
-                                getStatement.innerHTML = 'Reset the SCORES!'
+                                plaScore.innerHTML = `${score.Wins}`;
+                                comScore.innerHTML = `${score.Losses}`;
+                                statement.innerHTML = 'Reset the SCORES!'
                                 setTimeout(function(){
-                                    getStatement.innerHTML = `PLAY AGAIN ?`;
+                                    statement.innerHTML = `PLAY AGAIN ?`;
                                 },2000);
-                                getComImg.src = './assets/fist.png';
-                                getPlayerImg.src = './assets/fist.png';
+                                comImg.src = './assets/fist.png';
+                                playerImg.src = './assets/fist.png';
                                 ">
                                 RESET SCORES !
                             </button> 
@@ -243,13 +244,11 @@
 
     New features I might add in the future
 
-    1 - Difficulty levels: Add “Easy” (computer picks randomly), “Hard” (computer tries to counter player’s last move).
+    1 - Win streaks / achievements: Track consecutive wins and display badges.
 
-    2 - Win streaks / achievements: Track consecutive wins and display badges.
+    2 - Animations: Animate the hand icons when chosen (shake before reveal).
 
-    3 - Animations: Animate the hand icons when chosen (shake before reveal).
-
-    4 - Sound effects: Play a click or victory sound when moves are made
+    3 - Sound effects: Play a click or victory sound when moves are made
 
 
 -->

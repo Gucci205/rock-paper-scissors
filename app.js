@@ -1,32 +1,29 @@
+const statement = document.querySelector('#statement');
+const comScore = document.querySelector('.comScore');
+const plaScore = document.querySelector('.plaScore');
+const yearTxt = document.getElementById('yearTxt');
+const comImg = document.getElementById('comImg');
+const playerImg = document.getElementById('playerImg');
+const getImgs = document.querySelectorAll('.img');
+const loadingScreen = document.getElementById('loadingScreen');
+const introScreen = document.getElementById('introScreen');
+const gameContainer = document.getElementById('gameContainer');
+const startBtn = document.getElementById('startBtn');
+console.log(startBtn);
+
 const imgs = [
             './assets/fist.png',
             './assets/stop (1).png',
             './assets/v (1).png'
         ];
-const getStatement = document.querySelector('#statement');
-const getComScore = document.querySelector('.comScore');
-const getPlaScore = document.querySelector('.plaScore');
-const getYearTxt = document.getElementById('yearTxt');
-const getComImg = document.getElementById('comImg');
-const getPlayerImg = document.getElementById('playerImg');
-const getImgs = document.querySelectorAll('.img');
 
-//insert img to buttons
 function insertImg(){
     let img;
-    
+
     //Cleaner way
     for(let i = 0; i < getImgs.length; i++){
-        getImgs[i].src = imgs[i];
+        getImgs[i].src = imgs[i % 3];
     }
-
-    //Nested loop doesn't really necessary here
-        // for(let i = 0; i < getImgs.length; i++){
-        //     for(let x = 0; x <= i; x++){
-        //         img = imgs[x];
-        //     }
-        //     getImgs[i].src = img;
-        // }
 }
 insertImg();
 
@@ -40,7 +37,6 @@ const score = JSON.parse(localStorage.getItem('score')) || {
 function playGame(playerMove){  //parameter function
 
     pickComputerMove();   
-    // animateScores();  
 
     if(playerMove === 'Scissors'){
         if(computerMove === 'Rock'){
@@ -50,7 +46,7 @@ function playGame(playerMove){  //parameter function
         }else if(computerMove === 'Scissors'){
             result = 'Tie';
         }
-        getPlayerImg.src = './assets/v (1).png';
+        playerImg.src = './assets/v (1).png';
     }
     else if(playerMove === 'Paper'){ 
         if(computerMove === 'Rock'){
@@ -60,7 +56,7 @@ function playGame(playerMove){  //parameter function
         }else if(computerMove === 'Scissors'){
             result = 'You Lose';
         }
-        getPlayerImg.src = './assets/stop (1).png';
+        playerImg.src = './assets/stop (1).png';
     }
     else{
         if(computerMove === 'Rock'){
@@ -70,7 +66,7 @@ function playGame(playerMove){  //parameter function
         }else if(computerMove === 'Scissors'){
             result = 'You Win !';
         }
-        getPlayerImg.src = './assets/fist.png';
+        playerImg.src = './assets/fist.png';
     }
 
     if(result === 'You Win !'){
@@ -83,40 +79,46 @@ function playGame(playerMove){  //parameter function
 
     localStorage.setItem('score', JSON.stringify(score));
 
-    getStatement.innerHTML = `-> ${result} <-`;
-    getPlaScore.innerHTML = `${score.Wins}`;
-    getComScore.innerHTML = `${score.Losses}`;
+    statement.innerHTML = `-> ${result} <-`;
+    plaScore.innerHTML = `${score.Wins}`;
+    comScore.innerHTML = `${score.Losses}`;
 }
-
-// function animateScores(){
-//     if(score.Wins > 0){
-//         getPlaScore.classList.add("pop");
-//         setIimeout(function(){
-//             getPlaScore.classList.remove("pop");
-//         },2000);
-//     }else if(score.Losses > 0){
-//         getComScore.classList.add("pop");
-//         setIimeout(function(){
-//             getComScore.classList.remove("pop");
-//         },2000);
-//     }
-// }
 
 function pickComputerMove(){
     const randomNumber = Math.floor(Math.random()*3);
 
     if(randomNumber == 0){
         computerMove = 'Rock';
-        getComImg.src = './assets/fist.png';
+        comImg.src = './assets/fist.png';
     }else if(randomNumber == 1){
         computerMove = 'Paper';
-        getComImg.src = './assets/stop (1).png';
+        comImg.src = './assets/stop (1).png';
     }else if(randomNumber == 2){
         computerMove = 'Scissors';
-        getComImg.src = './assets/v (1).png';
+        comImg.src = './assets/v (1).png';
     }
 }
 
+setTimeout(() => {
+    loadingScreen.style.opacity = '0';
+
+    setTimeout(() => {
+        loadingScreen.style.display = 'none';
+
+        introScreen.style.opacity = '1';
+        introScreen.style.pointerEvents = 'auto';
+
+    }, 500);
+
+}, 3000);
+
+startBtn.addEventListener('click', () => {
+    introScreen.style.opacity = '0';
+    introScreen.style.pointerEvents = 'none';
+
+    gameContainer.style.opacity = '1';
+})
+    
 // for footer date
 const getDate = new Date();
-getYearTxt.innerText = getDate.getUTCFullYear();
+yearTxt.innerText = getDate.getUTCFullYear();

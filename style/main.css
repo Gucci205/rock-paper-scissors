@@ -19,6 +19,7 @@ body{
     inset:0;
     z-index:3;
     background-color:#221d3e;
+    transition: opacity .5s;
 }
 #introScreen{
     position:fixed;
@@ -26,9 +27,11 @@ body{
     z-index:2;
     opacity:0;
     pointer-events:none;
+    transition: opacity .5s;
 }
 #gameContainer{
     opacity:0;
+    transition: opacity .5s;
 }
 .rock{
     color:var(--rock);
