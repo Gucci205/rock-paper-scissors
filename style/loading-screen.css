@@ -64,7 +64,7 @@
 .loadingScreen-scissors-circle{
     background-color:var(--scissors);
     animation: wave 1s infinite;
-    animation-delay:0.3s;
+    animation-delay:0.4s;
 }
 @keyframes wave{
     0%,60%,100%{
