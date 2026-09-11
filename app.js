@@ -107,10 +107,11 @@ setTimeout(() => {
 
         introScreen.style.opacity = '1';
         introScreen.style.pointerEvents = 'auto';
+        introScreen.classList.add('is-visible');
 
     }, 500);
 
-}, 3000);
+}, 2000);
 
 startBtn.addEventListener('click', () => {
     introScreen.style.opacity = '0';
