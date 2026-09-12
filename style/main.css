@@ -12,7 +12,7 @@ body{
     font-family: "Jersey 20", sans-serif;
     letter-spacing:1px;
     user-select:none;
-    overflow-y:auto;
+    overflow-x:auto;
 }
 #loadingScreen{
     position:fixed;
@@ -23,7 +23,7 @@ body{
 }
 #introScreen{
     position:fixed;
-    inset:0;
+    inset:100px;
     z-index:2;
     opacity:0;
     pointer-events:none;
@@ -115,6 +115,11 @@ body{
     border-bottom:5px solid #0f0f0f;
     box-shadow:0 3px 7px rgb(164, 160, 160);
     letter-spacing:1px;
+}
+@media(max-width: 980px){
+    #introScreen{
+        inset:0;
+    }
 }
 @media(max-width: 770px){
     .header-section{
