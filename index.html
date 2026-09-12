@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="./style/main.css">
 </head>
 <body>
+    <audio src="./assets/theme-song.mp3" id="themeSong"></audio>
+    <audio src="./assets/click-song.mp3" id="clickSong"></audio>
+
     <div id="loadingScreen">
         <div class="first-container d-flex flex-column align-items-center">
             <div class="img-box">
@@ -40,6 +43,7 @@
             </div>
         </div>
     </div>
+
 
     <div id="introScreen">
         <header class="mt-3">
@@ -152,7 +156,7 @@
                 <div class="row text-center justify-content-evenly">
                     <div class="col-3">
                         <div class="yourMove">
-                            <button class="btn" onclick=" 
+                            <button class="play-btn" onclick=" 
                                 playGame('Rock');
                             ">
                                 <img src="" alt="rockImg" class="img-fluid img" />
@@ -161,7 +165,7 @@
                     </div>
                     <div class="col-3">
                         <div class="yourMove">
-                            <button class="btn" onclick="
+                            <button class="play-btn" onclick="
                                 playGame('Paper');
                             ">
                                 <img src="" alt="paperImg" class="img-fluid img" />
@@ -170,7 +174,7 @@
                     </div>
                     <div class="col-3">
                         <div class="yourMove">
-                            <button class="btn" onclick="
+                            <button class="play-btn" onclick="
                                 playGame('Scissors');       //giving parameter value
                             ">
                                 <img src="" alt="scissorsImg" class="img-fluid img" />

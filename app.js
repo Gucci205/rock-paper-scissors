@@ -9,6 +9,9 @@ const loadingScreen = document.getElementById('loadingScreen');
 const introScreen = document.getElementById('introScreen');
 const gameContainer = document.getElementById('gameContainer');
 const startBtn = document.getElementById('startBtn');
+const playBtns = document.querySelectorAll('.play-btn');
+const themeSong = document.getElementById('themeSong');
+const clickSong = document.getElementById('clickSong');
 
 const imgs = [
             './assets/fist.png',
@@ -102,6 +105,15 @@ function pickComputerMove(){
     }
 }
 
+function playClickSong(){
+    playBtns.forEach((playBtn) => {
+        playBtn.addEventListener('click', () => {
+            clickSong.play();
+        })
+    })
+}
+playClickSong();
+
 // I used AI completely for this part
 function playStartBounceSound(){
     // Use the browser's standard audio engine, with a Safari-compatible fallback.
@@ -121,18 +133,18 @@ function playStartBounceSound(){
     const startTime = audioContext.currentTime;
 
     // Use a smooth 'sine' wave for a soft, familiar interface sound.
-    oscillator.type = 'triangle';
+    oscillator.type = 'sine';
     // Start with a low pitch as the button begins to appear.
     oscillator.frequency.setValueAtTime(120, startTime);
     // Raise the pitch quickly to match the button's overshoot.
-    oscillator.frequency.exponentialRampToValueAtTime(820, startTime + .12);
+    oscillator.frequency.exponentialRampToValueAtTime(520, startTime + .12);
     // Lower the pitch as the button settles into its final size.
-    oscillator.frequency.exponentialRampToValueAtTime(150, startTime + .28);
+    oscillator.frequency.exponentialRampToValueAtTime(135, startTime + .28);
 
     // Begin nearly silent so the sound fades in instead of clicking.
     gain.gain.setValueAtTime(.0001, startTime);
     // Reach a quiet peak volume shortly after the sound starts.
-    gain.gain.exponentialRampToValueAtTime(3.5, startTime + .02);
+    gain.gain.exponentialRampToValueAtTime(2.5, startTime + .02);
     // Fade the sound almost completely out by the end of the bounce.
     gain.gain.exponentialRampToValueAtTime(.0001, startTime + .3);
 
@@ -146,16 +158,18 @@ function playStartBounceSound(){
     oscillator.stop(startTime + .3);
 }
 
+
 setTimeout(() => {
     loadingScreen.style.opacity = '0';
-
+    
     setTimeout(() => {
         loadingScreen.style.display = 'none';
-
+        
         introScreen.style.opacity = '1';
         introScreen.style.pointerEvents = 'auto';
         introScreen.classList.add('is-visible');
-
+        
+        themeSong.play();
         setTimeout(() => {
             playStartBounceSound();
         }, 650);
@@ -169,8 +183,9 @@ startBtn.addEventListener('click', () => {
     introScreen.style.pointerEvents = 'none';
 
     gameContainer.style.opacity = '1';
+    themeSong.pause();
 })
-    
+   
 // for footer date
 yearTxt.innerText = new Date().getUTCFullYear();
 
