@@ -102,19 +102,67 @@ function pickComputerMove(){
     }
 }
 
-// setTimeout(() => {
-//     loadingScreen.style.opacity = '0';
+// I use AI completely for this part
+function playStartBounceSound(){
+    // Use the browser's standard audio engine, with a Safari-compatible fallback.
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
 
-//     setTimeout(() => {
-//         loadingScreen.style.display = 'none';
+    if(!AudioContext){
+        return;
+    }
 
-//         introScreen.style.opacity = '1';
-//         introScreen.style.pointerEvents = 'auto';
-//         introScreen.classList.add('is-visible');
+    // Create a new audio engine for this short sound effect.
+    const audioContext = new AudioContext();
+    // Create the tone generator that will make the bounce sound.
+    const oscillator = audioContext.createOscillator();
+    // Create a volume controller so the sound can fade smoothly.
+    const gain = audioContext.createGain();
+    // Store one shared starting point for all sound timing values.
+    const startTime = audioContext.currentTime;
 
-//     }, 500);
+    // Use a smooth sine wave for a soft, familiar interface sound.
+    oscillator.type = 'sine';
+    // Start with a low pitch as the button begins to appear.
+    oscillator.frequency.setValueAtTime(180, startTime);
+    // Raise the pitch quickly to match the button's overshoot.
+    oscillator.frequency.exponentialRampToValueAtTime(520, startTime + .12);
+    // Lower the pitch as the button settles into its final size.
+    oscillator.frequency.exponentialRampToValueAtTime(260, startTime + .28);
 
-// }, 2000);
+    // Begin nearly silent so the sound fades in instead of clicking.
+    gain.gain.setValueAtTime(.0001, startTime);
+    // Reach a quiet peak volume shortly after the sound starts.
+    gain.gain.exponentialRampToValueAtTime(.12, startTime + .02);
+    // Fade the sound almost completely out by the end of the bounce.
+    gain.gain.exponentialRampToValueAtTime(.0001, startTime + .3);
+
+    // Send the oscillator's tone through the volume controller.
+    oscillator.connect(gain);
+    // Send the controlled sound to the user's speakers.
+    gain.connect(audioContext.destination);
+    // Start producing the tone at the shared start time.
+    oscillator.start(startTime);
+    // Stop the oscillator after the 300-millisecond sound effect ends.
+    oscillator.stop(startTime + .3);
+}
+
+setTimeout(() => {
+    loadingScreen.style.opacity = '0';
+
+    setTimeout(() => {
+        loadingScreen.style.display = 'none';
+
+        introScreen.style.opacity = '1';
+        introScreen.style.pointerEvents = 'auto';
+        introScreen.classList.add('is-visible');
+
+        setTimeout(() => {
+            playStartBounceSound();
+        }, 650);
+
+    }, 500);
+
+}, 2000);
 
 startBtn.addEventListener('click', () => {
     introScreen.style.opacity = '0';

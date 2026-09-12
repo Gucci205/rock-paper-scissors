@@ -14,7 +14,7 @@ body{
     user-select:none;
     overflow-y:auto;
 }
-/* #loadingScreen{
+#loadingScreen{
     position:fixed;
     inset:0;
     z-index:3;
@@ -28,11 +28,11 @@ body{
     opacity:0;
     pointer-events:none;
     transition: opacity .5s;
-} */
-/* #gameContainer{
+}
+#gameContainer{
     opacity:0;
     transition: opacity .5s;
-} */
+}
 .rock{
     color:var(--rock);
 }
