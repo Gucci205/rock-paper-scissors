@@ -85,7 +85,7 @@ function playGame(playerMove){  //parameter function
 
     localStorage.setItem('score', JSON.stringify(score));
 
-    statement.innerHTML = `-> ${result} <-`;
+    statement.innerHTML = `${result}`;
     plaScore.innerHTML = `${score.Wins}`;
     comScore.innerHTML = `${score.Losses}`;
 }
