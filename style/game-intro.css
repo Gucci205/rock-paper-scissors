@@ -62,9 +62,7 @@
     border:1px solid #aa1f1f;
     border-bottom:5px solid #ad1919;
 }
-#introScreen > header,
-#introScreen > main,
-#introScreen > footer{
+#introScreen > header, #introScreen > main, #introScreen > footer{
     opacity:0;
     transform:translateY(24px);
 }
@@ -78,7 +76,7 @@
     animation:intro-rise .7s .3s ease-out forwards;
 }
 #introScreen.is-visible .circle{
-    animation:ani 18s linear infinite;
+    animation:ani 4s linear infinite;
 }
 @keyframes intro-rise{
     to{

@@ -9,7 +9,6 @@ const loadingScreen = document.getElementById('loadingScreen');
 const introScreen = document.getElementById('introScreen');
 const gameContainer = document.getElementById('gameContainer');
 const startBtn = document.getElementById('startBtn');
-console.log(startBtn);
 
 const imgs = [
             './assets/fist.png',
@@ -20,7 +19,6 @@ const imgs = [
 function insertImg(){
     let img;
 
-    //Cleaner way
     for(let i = 0; i < getImgs.length; i++){
         getImgs[i].src = imgs[i % 3];
     }
@@ -33,6 +31,11 @@ const score = JSON.parse(localStorage.getItem('score')) || {
     Losses: 0,
     Ties: 0
 };
+
+if(JSON.parse(localStorage.getItem('score'))){
+    plaScore.innerHTML = score.Wins;
+    comScore.innerHTML = score.Losses
+}
 
 function playGame(playerMove){  //parameter function
 
@@ -70,7 +73,7 @@ function playGame(playerMove){  //parameter function
     }
 
     if(result === 'You Win !'){
-        score.Wins ++;
+        score.Wins += 1;
     }else if(result === 'You Lose'){
         score.Losses += 1;
     }else{
@@ -99,19 +102,19 @@ function pickComputerMove(){
     }
 }
 
-setTimeout(() => {
-    loadingScreen.style.opacity = '0';
+// setTimeout(() => {
+//     loadingScreen.style.opacity = '0';
 
-    setTimeout(() => {
-        loadingScreen.style.display = 'none';
+//     setTimeout(() => {
+//         loadingScreen.style.display = 'none';
 
-        introScreen.style.opacity = '1';
-        introScreen.style.pointerEvents = 'auto';
-        introScreen.classList.add('is-visible');
+//         introScreen.style.opacity = '1';
+//         introScreen.style.pointerEvents = 'auto';
+//         introScreen.classList.add('is-visible');
 
-    }, 500);
+//     }, 500);
 
-}, 2000);
+// }, 2000);
 
 startBtn.addEventListener('click', () => {
     introScreen.style.opacity = '0';
@@ -121,5 +124,4 @@ startBtn.addEventListener('click', () => {
 })
     
 // for footer date
-const getDate = new Date();
-yearTxt.innerText = getDate.getUTCFullYear();
+yearTxt.innerText = new Date().getUTCFullYear();
