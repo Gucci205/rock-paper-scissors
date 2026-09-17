@@ -53,10 +53,27 @@ body{
     border:1px solid #5a1770;
     border-bottom:6px solid #5a1770;
 }
+.plaScore.change, .comScore.change{
+    animation:score-bounce .3s linear both;
+} 
 #playerScore{
     background-color:var(--scissors);
     border:1px solid #17536d;
     border-bottom:6px solid #17536d;
+}
+@keyframes score-bounce{
+    0%{
+        transform:scale(.6);
+    }
+    60%{
+        transform:scale(1.15);
+    }
+    78%{
+        transform:scale(.94);
+    }
+    100%{
+        transform:scale(1);
+    }
 }
 .header-section{
     margin:15px 0;
