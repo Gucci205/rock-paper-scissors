@@ -74,14 +74,14 @@ function playGame(playerMove){  //parameter function
         if(computerMove === 'Rock'){
             result = 'Tie';
         }else if(computerMove === 'Paper'){
-            result = 'You Lose';
+            result = 'You Lose !';
         }else if(computerMove === 'Scissors'){
-            result = 'You Win !';
+            result = 'You Won !';
         }
         playerImg.src = './assets/fist.png';
     }
 
-    if(result === 'You Win !'){
+    if(result === 'You Won !'){
         score.Wins += 1;
 
         if(score.Wins > 0){

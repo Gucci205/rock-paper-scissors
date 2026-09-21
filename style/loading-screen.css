@@ -47,8 +47,8 @@
     gap:12px;    /*fixed space, justicy-content-spaceBetween can behave oddly */
 }
 .loadingScreen-rock-circle, .loadingScreen-paper-circle, .loadingScreen-scissors-circle{
-    width:17px;
-    height:17px;
+    width:13px;
+    height:13px;
     border-radius:50%;
 }
 .loadingScreen-rock-circle{
