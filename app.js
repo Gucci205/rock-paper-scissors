@@ -54,7 +54,7 @@ function playGame(playerMove){  //parameter function
         if(computerMove === 'Rock'){
             result = 'You Lose';
         }else if(computerMove === 'Paper'){
-            result = 'You Win !';
+            result = 'You Won !';
         }else if(computerMove === 'Scissors'){
             result = 'Tie';
         }
@@ -62,7 +62,7 @@ function playGame(playerMove){  //parameter function
     }
     else if(playerMove === 'Paper'){ 
         if(computerMove === 'Rock'){
-            result = 'You Win !';
+            result = 'You Won !';
         }else if(computerMove === 'Paper'){
             result = 'Tie';
         }else if(computerMove === 'Scissors'){
@@ -82,7 +82,7 @@ function playGame(playerMove){  //parameter function
     }
 
     if(result === 'You Won !'){
-        score.Wins += 1;
+        score.Wins ++ ;
 
         if(score.Wins > 0){
             plaScore.classList.add('change');
@@ -91,6 +91,7 @@ function playGame(playerMove){  //parameter function
         setTimeout(() => {
             plaScore.classList.remove('change');
         },500);
+
     }else if(result === 'You Lose'){
         score.Losses += 1;
 
@@ -101,6 +102,7 @@ function playGame(playerMove){  //parameter function
         setTimeout(() => {
             comScore.classList.remove('change');
         },500);
+
     }else{
         score.Ties += 1;
     }
@@ -126,15 +128,15 @@ function pickComputerMove(){
         comImg.src = './assets/v (1).png';
     }
 }
-// Need to fix
-    // function playClickSong(){
-    //     playBtns.forEach((playBtn) => {
-    //         playBtn.addEventListener('click', () => {
-    //             clickSong.play();
-    //         })
-    //     })
-    // }
-    // playClickSong();
+playClickSong();
+
+function playClickSong(){
+    playBtns.forEach((playBtn) => {
+        playBtn.addEventListener('click', () => {
+            playStartBounceSound();
+        })
+    })
+}
 
 // I used AI for this part and will learn it in the fucture
 function playStartBounceSound(){
@@ -180,6 +182,7 @@ function playStartBounceSound(){
     oscillator.stop(startTime + .3);
 }
 
+sessionStorage.setItem('startBouncePlayed', 'true');
 
 setTimeout(() => {
     loadingScreen.style.opacity = '0';
@@ -191,9 +194,10 @@ setTimeout(() => {
         introScreen.style.pointerEvents = 'auto';
         introScreen.classList.add('is-visible');
         
-        themeSong.play();
         setTimeout(() => {
-            playStartBounceSound();
+            if(sessionStorage.getItem('startBouncePlayed') !== 'false'){
+                playStartBounceSound();
+            }
         }, 650);
 
     }, 500);
@@ -205,7 +209,9 @@ startBtn.addEventListener('click', () => {
     introScreen.style.pointerEvents = 'none';
 
     gameContainer.style.opacity = '1';
-    themeSong.pause();
+    themeSong.play().catch((error) => {
+        console.warn('Theme music could not be played:', error);
+    });
 })
    
 // for footer date

@@ -18,7 +18,6 @@
 </head>
 <body>
     <audio src="./assets/theme-song.mp3" id="themeSong"></audio>
-    <audio src="./assets/click-song.mp3" id="clickSong"></audio>
 
     <div id="loadingScreen">
         <div class="first-container d-flex flex-column align-items-center">
@@ -201,7 +200,7 @@
                                 statement.innerHTML = 'Reset the SCORES!'
                                 setTimeout(function(){
                                     statement.innerHTML = `PLAY AGAIN ?`;
-                                },2000);
+                                },1000);
                                 comImg.src = './assets/fist.png';
                                 playerImg.src = './assets/fist.png';
                                 ">
