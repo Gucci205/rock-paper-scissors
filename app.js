@@ -15,7 +15,8 @@ const gameContainer = document.getElementById('gameContainer');
 
 const startBtn = document.getElementById('startBtn');
 const playBtns = document.querySelectorAll('.play-btn');
-
+const resetBtn = document.getElementById('resetBtn');
+ 
 const themeSong = document.getElementById('themeSong');
 const clickSong = document.getElementById('clickSong');
 
@@ -25,6 +26,7 @@ const imgs = [
             './assets/v (1).png'
         ];
 
+insertImg();
 function insertImg(){
     let img;
 
@@ -32,7 +34,37 @@ function insertImg(){
         getImgs[i].src = imgs[i % 3];
     }
 }
-insertImg();
+
+playBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        if(btn.classList.contains("rock-btn")){
+            playGame('Rock');
+        }else if(btn.classList.contains("paper-btn")){
+            playGame('Paper');
+        }else{
+            playGame('Scissors');
+        }
+    })
+})
+
+resetBtn.addEventListener('click', () => {
+    score.Wins = 0;
+    score.Losses = 0;
+    score.Ties = 0;
+
+    localStorage.removeItem('score');
+
+    plaScore.innerHTML = `${score.Wins}`;
+    comScore.innerHTML = `${score.Losses}`;
+    statement.innerHTML = 'Reset the SCORES!';
+
+    setTimeout(() => {
+        statement.innerHTML = `PLAY AGAIN ?`;
+    },1000);
+
+    comImg.src = './assets/fist.png';
+    playerImg.src = './assets/fist.png';
+})
 
 let computerMove = ' ';
 const score = JSON.parse(localStorage.getItem('score')) || {
@@ -82,7 +114,7 @@ function playGame(playerMove){  //parameter function
     }
 
     if(result === 'You Won !'){
-        score.Wins ++ ;
+        score.Wins += 1 ;
 
         if(score.Wins > 0){
             plaScore.classList.add('change');
@@ -101,6 +133,8 @@ function playGame(playerMove){  //parameter function
         setTimeout(() => {
             comScore.classList.remove('change');
         },500);
+    }else{
+        score.Ties += 1;
     }
 
     localStorage.setItem('score', JSON.stringify(score));

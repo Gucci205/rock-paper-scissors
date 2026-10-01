@@ -155,27 +155,21 @@
                 <div class="row text-center justify-content-evenly">
                     <div class="col-3">
                         <div class="yourMove">
-                            <button class="play-btn" onclick=" 
-                                playGame('Rock');
-                            ">
+                            <button class="play-btn rock-btn">
                                 <img src="" alt="rockImg" class="img-fluid img" />
                             </button>
                         </div>
                     </div>
                     <div class="col-3">
                         <div class="yourMove">
-                            <button class="play-btn" onclick="
-                                playGame('Paper');
-                            ">
+                            <button class="play-btn paper-btn">
                                 <img src="" alt="paperImg" class="img-fluid img" />
                             </button>
                         </div>
                     </div>
                     <div class="col-3">
                         <div class="yourMove">
-                            <button class="play-btn" onclick="
-                                playGame('Scissors');       //giving parameter value
-                            ">
+                            <button class="play-btn scissors-btn">
                                 <img src="" alt="scissorsImg" class="img-fluid img" />
                             </button>
                         </div>
@@ -190,20 +184,7 @@
                 <div class="row">
                     <div class="col">
                         <div>
-                            <button id="resetBtn" class="btn py-1 px-1" onclick=" 
-                                score.Wins = 0;
-                                score.Losses = 0;
-                                score.Ties = 0;
-                                localStorage.removeItem('score');
-                                plaScore.innerHTML = `${score.Wins}`;
-                                comScore.innerHTML = `${score.Losses}`;
-                                statement.innerHTML = 'Reset the SCORES!'
-                                setTimeout(function(){
-                                    statement.innerHTML = `PLAY AGAIN ?`;
-                                },1000);
-                                comImg.src = './assets/fist.png';
-                                playerImg.src = './assets/fist.png';
-                                ">
+                            <button id="resetBtn" class="btn py-1 px-1">
                                 RESET SCORES !
                             </button> 
                         </div>
