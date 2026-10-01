@@ -79,7 +79,7 @@ if(JSON.parse(localStorage.getItem('score'))){
 }
 
 function playGame(playerMove){  //parameter function
-
+    let result = '';
     pickComputerMove();   
 
     if(playerMove === 'Scissors'){
