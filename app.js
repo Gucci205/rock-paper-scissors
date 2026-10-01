@@ -52,7 +52,7 @@ function playGame(playerMove){  //parameter function
 
     if(playerMove === 'Scissors'){
         if(computerMove === 'Rock'){
-            result = 'You Lose';
+            result = 'You Lose !';
         }else if(computerMove === 'Paper'){
             result = 'You Won !';
         }else if(computerMove === 'Scissors'){
@@ -66,7 +66,7 @@ function playGame(playerMove){  //parameter function
         }else if(computerMove === 'Paper'){
             result = 'Tie';
         }else if(computerMove === 'Scissors'){
-            result = 'You Lose';
+            result = 'You Lose !';
         }
         playerImg.src = './assets/stop (1).png';
     }
@@ -91,8 +91,7 @@ function playGame(playerMove){  //parameter function
         setTimeout(() => {
             plaScore.classList.remove('change');
         },500);
-
-    }else if(result === 'You Lose'){
+    }else if(result === 'You Lose !'){
         score.Losses += 1;
 
         if(score.Losses > 0){
@@ -102,9 +101,6 @@ function playGame(playerMove){  //parameter function
         setTimeout(() => {
             comScore.classList.remove('change');
         },500);
-
-    }else{
-        score.Ties += 1;
     }
 
     localStorage.setItem('score', JSON.stringify(score));
