@@ -13,6 +13,17 @@ body{
     letter-spacing:1px;
     user-select:none;
     overflow-x:auto;
+    position:relative;
+}
+.mute-btn{
+    border:0;
+    outline:0;
+    color:var(--reset);
+    position:absolute;
+    right:2%;
+    cursor:pointer;
+    z-index:999;
+    opacity:0;
 }
 #loadingScreen{
     position:fixed;
@@ -112,12 +123,12 @@ body{
     box-shadow:0 1px 7px rgb(208, 203, 203);
 }
 .yourMove button{
-    border:1px solid gray;
     background-color:var(--main);
-    cursor:pointer;
     overflow:hidden;
-    border-radius:11px;
     box-shadow:0 4px 8px rgb(200, 198, 198);
+}
+.yourMove button:hover{
+    border:1px solid gray;
 }
 .yourMove button img{
     width:140px;

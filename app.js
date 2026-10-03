@@ -16,6 +16,7 @@ const gameContainer = document.getElementById('gameContainer');
 const startBtn = document.getElementById('startBtn');
 const playBtns = document.querySelectorAll('.play-btn');
 const resetBtn = document.getElementById('resetBtn');
+const muteBtn = document.querySelector('.mute-btn');
  
 const themeSong = document.getElementById('themeSong');
 const clickSong = document.getElementById('clickSong');
@@ -28,12 +29,24 @@ const imgs = [
 
 insertImg();
 function insertImg(){
-    let img;
-
     for(let i = 0; i < getImgs.length; i++){
         getImgs[i].src = imgs[i % 3];
     }
 }
+
+muteBtn.addEventListener('click', () => {
+    if(muteBtn.classList.contains('fa-volume-xmark')){
+        muteBtn.classList.remove('fa-volume-xmark');
+        muteBtn.classList.add('fa-volume-low');
+
+        themeSong.pause();
+    }else{
+        muteBtn.classList.remove('fa-volume-low');
+        muteBtn.classList.add('fa-volume-xmark');
+
+        themeSong.play();
+    }
+})
 
 playBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -58,9 +71,7 @@ resetBtn.addEventListener('click', () => {
     comScore.innerHTML = `${score.Losses}`;
     statement.innerHTML = 'Reset the SCORES!';
 
-    setTimeout(() => {
-        statement.innerHTML = `PLAY AGAIN ?`;
-    },1000);
+    setTimeout(() => statement.innerHTML = `PLAY AGAIN ?`, 1000);
 
     comImg.src = './assets/fist.png';
     playerImg.src = './assets/fist.png';
@@ -116,23 +127,17 @@ function playGame(playerMove){  //parameter function
     if(result === 'You Won !'){
         score.Wins += 1 ;
 
-        if(score.Wins > 0){
-            plaScore.classList.add('change');
-        }
+        if(score.Wins > 0) plaScore.classList.add('change');
 
-        setTimeout(() => {
-            plaScore.classList.remove('change');
-        },500);
+        setTimeout(() => plaScore.classList.remove('change'), 500);
+
     }else if(result === 'You Lose !'){
         score.Losses += 1;
 
-        if(score.Losses > 0){
-            comScore.classList.add('change');
-        }
+        if(score.Losses > 0) comScore.classList.add('change');
 
-        setTimeout(() => {
-            comScore.classList.remove('change');
-        },500);
+        setTimeout(() => comScore.classList.remove('change'), 500);
+
     }else{
         score.Ties += 1;
     }
@@ -145,26 +150,24 @@ function playGame(playerMove){  //parameter function
 }
 
 function pickComputerMove(){
-    const randomNumber = Math.floor(Math.random()*3);
+    const randomNumber = Math.ceil(Math.random()*3);
 
-    if(randomNumber == 0){
+    if(randomNumber === 0){
         computerMove = 'Rock';
         comImg.src = './assets/fist.png';
-    }else if(randomNumber == 1){
+    }else if(randomNumber === 1){
         computerMove = 'Paper';
         comImg.src = './assets/stop (1).png';
-    }else if(randomNumber == 2){
+    }else if(randomNumber === 2){
         computerMove = 'Scissors';
         comImg.src = './assets/v (1).png';
     }
 }
-playClickSong();
 
+playClickSong();
 function playClickSong(){
     playBtns.forEach((playBtn) => {
-        playBtn.addEventListener('click', () => {
-            playStartBounceSound();
-        })
+        playBtn.addEventListener('click', () => playStartBounceSound());
     })
 }
 
@@ -173,9 +176,7 @@ function playStartBounceSound(){
     // Use the browser's standard audio engine, with a Safari-compatible fallback.
     const AudioContext = window.AudioContext || window.webkitAudioContext;
 
-    if(!AudioContext){
-        return;
-    }
+    if(!AudioContext) return;
 
     // Create a new audio engine for this short sound effect.
     const audioContext = new AudioContext();
@@ -216,7 +217,8 @@ sessionStorage.setItem('startBouncePlayed', 'true');
 
 setTimeout(() => {
     loadingScreen.style.opacity = '0';
-    
+    muteBtn.style.opacity = '1';
+
     setTimeout(() => {
         loadingScreen.style.display = 'none';
         
@@ -225,9 +227,7 @@ setTimeout(() => {
         introScreen.classList.add('is-visible');
         
         setTimeout(() => {
-            if(sessionStorage.getItem('startBouncePlayed') !== 'false'){
-                playStartBounceSound();
-            }
+            if(sessionStorage.getItem('startBouncePlayed') !== 'false') playStartBounceSound();
         }, 650);
 
     }, 500);
@@ -239,9 +239,11 @@ startBtn.addEventListener('click', () => {
     introScreen.style.pointerEvents = 'none';
 
     gameContainer.style.opacity = '1';
-    themeSong.play().catch((error) => {
-        console.warn('Theme music could not be played:', error);
-    });
+    if(muteBtn.classList.contains('fa-volume-low')){
+        themeSong.pause();
+    }else{
+        themeSong.play().catch(error => console.warn('Theme music could not be played:', error));
+    }
 })
    
 // for footer date
