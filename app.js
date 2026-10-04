@@ -47,6 +47,14 @@ muteBtn.addEventListener('click', () => {
     }
 })
 
+function loopAudio(){
+    if(themeSong.ended){
+        themeSong.play().catch(error => console.warn('Theme music could not be played:', error));
+    }
+}
+
+themeSong.addEventListener('ended', loopAudio);
+
 startBtn.addEventListener('click', () => {
     introScreen.style.opacity = '0';
     introScreen.style.pointerEvents = 'none';
