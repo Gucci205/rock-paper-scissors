@@ -40,4 +40,4 @@
 
 // A browser may block an AudioContext from playing automatically because of autoplay restrictions. Starting or resuming audio after a user interaction, such as clicking a button, is usually safer.
 
-// Creating a new AudioContext every time a sound plays can work, but for a larger game it is generally better to create one shared AudioContext and reuse it for all sound effects.
+// Reuse one AudioContext for every sound instead of creating one per button press. Mobile browsers can suspend a context; resume it from the next user interaction before playing the sound.

@@ -5,13 +5,6 @@
     height:300px;
     width:300px;
 }
-@keyframes ani{
-    from{
-        transform:rotate(0deg);
-    }to{
-        transform:rotate(360deg);
-    }
-}
 .rock-img img, .paper-img img, .scissors-img img{
     width:100px;
     height:auto;
@@ -81,6 +74,13 @@
 #introScreen.is-visible .circle{
     animation:ani 4s linear infinite;
 }
+@keyframes ani{
+    from{
+        transform:rotate(0deg);
+    }to{
+        transform:rotate(360deg);
+    }
+}
 @keyframes intro-rise{
     to{
         opacity:1;
@@ -99,5 +99,11 @@
     }
     100%{
         transform:scale(1);
+    }
+}
+@media(max-width: 390px){
+    .circle{
+        height:270px;
+        width:270px;
     }
 }

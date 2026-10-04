@@ -19,7 +19,6 @@ const resetBtn = document.getElementById('resetBtn');
 const muteBtn = document.querySelector('.mute-btn');
  
 const themeSong = document.getElementById('themeSong');
-const clickSong = document.getElementById('clickSong');
 
 const imgs = [
             './assets/fist.png',
@@ -44,7 +43,7 @@ muteBtn.addEventListener('click', () => {
         muteBtn.classList.remove('fa-volume-low');
         muteBtn.classList.add('fa-volume-xmark');
 
-        themeSong.play();
+        themeSong.play().catch(error => console.warn('Theme music could not be played:', error));
     }
 })
 
@@ -57,6 +56,8 @@ playBtns.forEach((btn) => {
         }else{
             playGame('Scissors');
         }
+
+        playStartBounceSound();
     })
 })
 
@@ -144,9 +145,9 @@ function playGame(playerMove){  //parameter function
 
     localStorage.setItem('score', JSON.stringify(score));
 
-    statement.innerHTML = `${result}`;
-    plaScore.innerHTML = `${score.Wins}`;
-    comScore.innerHTML = `${score.Losses}`;
+    statement.textContent = `${result}`;
+    plaScore.textContent = `${score.Wins}`;
+    comScore.textContent = `${score.Losses}`;
 }
 
 function pickComputerMove(){
@@ -164,61 +165,56 @@ function pickComputerMove(){
     }
 }
 
-playClickSong();
-function playClickSong(){
-    playBtns.forEach((playBtn) => {
-        playBtn.addEventListener('click', () => playStartBounceSound());
-    })
-}
+let bounceAudioContext;
 
-// I used AI for this part and will learn it in the fucture
 function playStartBounceSound(){
     // Use the browser's standard audio engine, with a Safari-compatible fallback.
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const AudioContextConstructor = window.AudioContext || window.webkitAudioContext;
 
-    if(!AudioContext) return;
+    if(!AudioContextConstructor) return;
 
-    // Create a new audio engine for this short sound effect.
-    const audioContext = new AudioContext();
-    // Create the tone generator that will make the bounce sound.
-    const oscillator = audioContext.createOscillator();
-    // Create a volume controller so the sound can fade smoothly.
-    const gain = audioContext.createGain();
-    // Store one shared starting point for all sound timing values.
-    const startTime = audioContext.currentTime;
+    try {
+        if(!bounceAudioContext || bounceAudioContext.state === 'closed'){
+            bounceAudioContext = new AudioContextConstructor();
+        }
 
-    // Use a smooth 'sine' wave for a soft, familiar interface sound.
-    oscillator.type = 'sine';
-    // Start with a low pitch as the button begins to appear.
-    oscillator.frequency.setValueAtTime(120, startTime);
-    // Raise the pitch quickly to match the button's overshoot.
-    oscillator.frequency.exponentialRampToValueAtTime(520, startTime + .12);
-    // Lower the pitch as the button settles into its final size.
-    oscillator.frequency.exponentialRampToValueAtTime(135, startTime + .28);
+        const playSound = () => {
+            const oscillator = bounceAudioContext.createOscillator();
+            const gain = bounceAudioContext.createGain();
+            const startTime = bounceAudioContext.currentTime;
 
-    // Begin nearly silent so the sound fades in instead of clicking.
-    gain.gain.setValueAtTime(.0001, startTime);
-    // Reach a quiet peak volume shortly after the sound starts.
-    gain.gain.exponentialRampToValueAtTime(2.5, startTime + .02);
-    // Fade the sound almost completely out by the end of the bounce.
-    gain.gain.exponentialRampToValueAtTime(.0001, startTime + .3);
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(120, startTime);
+            oscillator.frequency.exponentialRampToValueAtTime(520, startTime + .12);
+            oscillator.frequency.exponentialRampToValueAtTime(135, startTime + .28);
 
-    // Send the oscillator's tone through the volume controller.
-    oscillator.connect(gain);
-    // Send the controlled sound to the user's speakers.
-    gain.connect(audioContext.destination);
-    // Start producing the tone at the shared start time.
-    oscillator.start(startTime);
-    // Stop the oscillator after the 300-millisecond sound effect ends.
-    oscillator.stop(startTime + .3);
+            gain.gain.setValueAtTime(.0001, startTime);
+            gain.gain.exponentialRampToValueAtTime(2.5, startTime + .02);
+            gain.gain.exponentialRampToValueAtTime(.0001, startTime + .3);
+
+            oscillator.connect(gain);
+            gain.connect(bounceAudioContext.destination);
+            oscillator.start(startTime);
+            oscillator.stop(startTime + .3);
+        };
+
+        if(bounceAudioContext.state === 'running'){
+            playSound();
+        }else{
+            bounceAudioContext.resume().then(playSound).catch(error => {
+                console.warn('Click sound could not be played:', error);
+            });
+        }
+    }catch(error){
+        console.warn('Click sound could not be played:', error);
+    }
 }
 
 sessionStorage.setItem('startBouncePlayed', 'true');
 
 setTimeout(() => {
     loadingScreen.style.opacity = '0';
-    muteBtn.style.opacity = '1';
-
+    
     setTimeout(() => {
         loadingScreen.style.display = 'none';
         
@@ -237,13 +233,9 @@ setTimeout(() => {
 startBtn.addEventListener('click', () => {
     introScreen.style.opacity = '0';
     introScreen.style.pointerEvents = 'none';
-
+    
     gameContainer.style.opacity = '1';
-    if(muteBtn.classList.contains('fa-volume-low')){
-        themeSong.pause();
-    }else{
-        themeSong.play().catch(error => console.warn('Theme music could not be played:', error));
-    }
+    muteBtn.style.opacity = '1';
 })
    
 // for footer date
