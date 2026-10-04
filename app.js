@@ -37,13 +37,27 @@ muteBtn.addEventListener('click', () => {
     if(muteBtn.classList.contains('fa-volume-xmark')){
         muteBtn.classList.remove('fa-volume-xmark');
         muteBtn.classList.add('fa-volume-low');
-
+        
         themeSong.pause();
     }else{
         muteBtn.classList.remove('fa-volume-low');
         muteBtn.classList.add('fa-volume-xmark');
-
+        
         themeSong.play().catch(error => console.warn('Theme music could not be played:', error));
+    }
+})
+
+startBtn.addEventListener('click', () => {
+    introScreen.style.opacity = '0';
+    introScreen.style.pointerEvents = 'none';
+    
+    gameContainer.style.opacity = '1';
+    muteBtn.style.opacity = '1';
+
+    if(muteBtn.classList.contains('fa-volume-xmark')){
+        themeSong.play().catch(error => console.warn('Theme music could not be played:', error));
+    }else{
+        themeSong.pause();
     }
 })
 
@@ -230,13 +244,6 @@ setTimeout(() => {
 
 }, 2000);
 
-startBtn.addEventListener('click', () => {
-    introScreen.style.opacity = '0';
-    introScreen.style.pointerEvents = 'none';
-    
-    gameContainer.style.opacity = '1';
-    muteBtn.style.opacity = '1';
-})
    
 // for footer date
 yearTxt.innerText = new Date().getUTCFullYear();
